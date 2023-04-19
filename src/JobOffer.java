@@ -23,7 +23,8 @@ public class JobOffer {
     String getCity() {
         return this.city;
     }
-    int getExperience(){
+
+    int getExperience() {
         return this.experience;
     }
 

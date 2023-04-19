@@ -58,9 +58,9 @@ public class JobApplicationService extends JobApplication {
         List<JobApplication> incrorectApplications = new ArrayList<>();
         for (int i = 0; i < jobApplications.size(); i++) {
             for (int j = i + 1; j < jobApplications.size(); j++) {
-                if ((jobApplications.get(i).getName()).equals(jobApplications.get(j).getName()) || (jobApplications.get(i).getEmail().equals(jobApplications.get(j).getEmail())) ) {
-                        incrorectApplications.add(jobApplications.get(i));
-                        incrorectApplications.add(jobApplications.get(j));
+                if ((jobApplications.get(i).getName()).equals(jobApplications.get(j).getName()) || (jobApplications.get(i).getEmail().equals(jobApplications.get(j).getEmail()))) {
+                    incrorectApplications.add(jobApplications.get(i));
+                    incrorectApplications.add(jobApplications.get(j));
                 }
             }
         }
