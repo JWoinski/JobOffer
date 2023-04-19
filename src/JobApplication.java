@@ -1,43 +1,21 @@
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
 
 public class JobApplication {
     String name, city, email, skills[];
     int phoneNumber, salary, experience;
     boolean relocationReady;
 
-    public JobOffer getBiggestSalary(List<JobOffer> jobOffers) {
-        //        znajduje z listy oferte o najwyzsazej pensji
+    JobApplication(String name, String city, String email, String[] skills, int phoneNumber, int salary, int experience, boolean relocationReady) {
+        this.name = name;
+        this.city = city;
+        this.email = email;
+        this.skills = skills;
+        this.phoneNumber = phoneNumber;
+        this.salary = salary;
+        this.experience = experience;
+        this.relocationReady = relocationReady;
     }
-
-    public long countInCity(List<JobOffer> jobOffers, String city) {
-        //    liczy ile jest ofert z danego miasta (city)
-
+    public String toString() {
+        return getClass().getName() + " City: " + city + " Salary: " + salary + " Skills: " + Arrays.toString(skills) + " Experience: " + experience;
     }
-
-
-    public List<String> getCitiesSet(List<JobOffer> jobOffers) {
-        //    znajduje wszystkie miasta z ofert (różne, czyli maja sie nie powtarzac)
-
-    }
-
-
-    public double getAverageMinExp(List<JobOffer> jobOffers) {
-        //    znajduje srednie minimalne doswiadczenie z ofert z listy
-
-    }
-
-
-    public String getMostPopularSkill(List<JobOffer> jobOffers) {
-        //    znajdz najpopularniejszy skill z ofert z listy (czyli ten ktory wystepuje najczesniej)
-
-    }
-
-
-    public JobApplication getBestApplication(JobOffer jobOffer, List<JobApplication> jobApplications) {
-        //    (znajdz z listy aplikacji o prace NAJLEPSZA dla danej oferty)
-
-    }
-
-
 }
