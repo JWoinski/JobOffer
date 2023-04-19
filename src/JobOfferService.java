@@ -14,7 +14,7 @@ public class JobOfferService extends JobOffer {
         int biggestSalary = Integer.MIN_VALUE;
         JobOffer biggestSalaryOffer = null;
         for (JobOffer offer : jobOffers) {
-            if (offer.offeredSalary > biggestSalary) {
+            if (offer.getOfferedSalary() > biggestSalary) {
                 biggestSalaryOffer = offer;
             }
         }
@@ -26,7 +26,7 @@ public class JobOfferService extends JobOffer {
         //    liczy ile jest ofert z danego miasta (city)
         long counter = 0;
         for (JobOffer offer : jobOffers) {
-            if ((offer.city).equals(city)) {
+            if ((offer.getCity()).equals(city)) {
                 counter++;
             }
         }
@@ -37,28 +37,27 @@ public class JobOfferService extends JobOffer {
         //    znajduje wszystkie miasta z ofert (różne, czyli maja sie nie powtarzac)
         List<String> list = new ArrayList<>();
         for (JobOffer offer : jobOffers) {
-            if (!list.contains(offer.city)) {
-                list.add(offer.city);
+            if (!list.contains(offer.getCity())) {
+                list.add(offer.getCity());
             }
         }
         return list;
     }
 
     public static double getAverageMinExp(List<JobOffer> jobOffers) {
+        //    znajduje srednie minimalne doswiadczenie z ofert z listy
         double temp = 0;
         for (JobOffer offer : jobOffers) {
-            temp += offer.experience;
+            temp += offer.getExperience();
         }
-        //    znajduje srednie minimalne doswiadczenie z ofert z listy
         return temp / jobOffers.size();
     }
 
     public static String getMostPopularSkill(List<JobOffer> jobOffers) {
         List<String> list = new ArrayList<>();
         for (JobOffer offer : jobOffers) {
-            list.addAll(Arrays.asList(offer.skills));
+            list.addAll(Arrays.asList(offer.getSkills()));
         }
-
         int frequence = 0;
         String res = "";
         for (int i = 0; i < list.size(); i++) {
@@ -82,16 +81,16 @@ public class JobOfferService extends JobOffer {
         List<Integer> list = new ArrayList<>();
         for (JobApplication application : jobApplications) {
             score = 0;
-            if ((jobOffer.city).equals(application.city)) {
+            if ((jobOffer.getCity()).equals(application.getCity())) {
                 score++;
             }
-            if (jobOffer.experience >= application.experience) {
+            if (jobOffer.getExperience() >= application.getExperience()) {
                 score++;
             }
-            if (jobOffer.offeredSalary <= application.salary) {
+            if (jobOffer.getOfferedSalary() <= application.getSalary()) {
                 score++;
             }
-            if (Arrays.asList(sortSkills(jobOffer.skills)).containsAll(Arrays.asList(sortSkills(application.skills)))) {
+            if (Arrays.asList(sortSkills(jobOffer.getSkills())).containsAll(Arrays.asList(sortSkills(application.skills)))) {
                 score++;
             }
             list.add(score);

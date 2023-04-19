@@ -1,7 +1,8 @@
 import java.util.Arrays;
 
 public class JobOffer {
-    String city, skills[];
+    String city;
+    String[] skills;
     int experience, offeredSalary;
 
     JobOffer(String city, int offeredSalary, String[] skills, int experience) {
@@ -20,7 +21,10 @@ public class JobOffer {
     }
 
     String getCity() {
-        return this.getCity();
+        return this.city;
+    }
+    int getExperience(){
+        return this.experience;
     }
 
     public String toString() {

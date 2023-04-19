@@ -18,6 +18,31 @@ public class JobApplication {
         this.experience = experience;
         this.relocationReady = relocationReady;
     }
+    String getName(){
+        return this.name;
+    }
+    String getCity(){
+        return this.city;
+    }
+    String getEmail(){
+        return this.email;
+    }
+    String[] getSkills(){
+        return this.skills;
+    }
+    int getPhoneNumber(){
+        return this.phoneNumber;
+    }
+    int getSalary(){
+        return this.salary;
+    }
+    int getExperience(){
+        return this.experience;
+    }
+    boolean getRelocationReady(){
+        return this.relocationReady;
+    }
+
     public String toString() {
         return getClass().getName() +" Name: "+name + " Email: "+email+" City: " + city + " Salary: " + salary + " Skills: " + Arrays.toString(skills) + " Experience: " + experience + "\n";
     }
