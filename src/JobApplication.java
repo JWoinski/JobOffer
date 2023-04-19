@@ -1,7 +1,10 @@
 import java.util.Arrays;
 
 public class JobApplication {
-    String name, city, email, skills[];
+    String name;
+    String city;
+    String email;
+    String[] skills;
     int phoneNumber, salary, experience;
     boolean relocationReady;
 
@@ -16,6 +19,6 @@ public class JobApplication {
         this.relocationReady = relocationReady;
     }
     public String toString() {
-        return getClass().getName() + " City: " + city + " Salary: " + salary + " Skills: " + Arrays.toString(skills) + " Experience: " + experience;
+        return getClass().getName() +" Name: "+name + " Email: "+email+" City: " + city + " Salary: " + salary + " Skills: " + Arrays.toString(skills) + " Experience: " + experience + "\n";
     }
 }
