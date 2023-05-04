@@ -1,14 +1,8 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class JobApplicationService extends JobApplication {
-    JobApplicationService(String name, String city, String email, String[] skills, int phoneNumber, int salary, int experience, boolean relocationReady) {
-        super(name, city, email, skills, phoneNumber, salary, experience, relocationReady);
-    }
+public class JobApplicationService {
 
     public static Map<String, Long> getCitiesCount(List<JobApplication> jobApplications) {
         //    zlicza ilośc wystąpnien miast, np (krakow : 5, warszawa : 10, rzeszow 2, itp)
@@ -30,25 +24,21 @@ public class JobApplicationService extends JobApplication {
 
     public static String getMostFreqSkill(List<JobApplication> jobApplications) {
         //    znajdz najczessciej wystepujacy skill
-        List<String> list = new ArrayList<>();
-        for (JobApplication offer : jobApplications) {
-            list.addAll(Arrays.asList(offer.getSkills()));
-        }
-        int frequence = 0;
-        String res = "";
-        for (int i = 0; i < list.size(); i++) {
-            int count = 0;
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(j).equals(list.get(i))) {
-                    count++;
-                }
-            }
-            if (count >= frequence) {
-                res = list.get(i);
-                frequence = count;
+        Map<String, Integer> skillsMap = new HashMap<>();
+        int i =0;
+        for (JobApplication jobApplication : jobApplications) {
+            for (String skill : jobApplication.getSkills()) {
+                skillsMap.put(skill,i);
+                i++;
             }
         }
-        return res;
+        Map.Entry<String, Integer> maxEntry = null;
+        for (Map.Entry<String, Integer> entry : skillsMap.entrySet()) {
+            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+                maxEntry = entry;
+            }
+        }
+        return maxEntry.getKey();
     }
 
     public static List<JobApplication> validate(List<JobApplication> jobApplications) {

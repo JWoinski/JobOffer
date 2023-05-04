@@ -1,9 +1,10 @@
 import java.util.Arrays;
 
 public class JobOffer {
-    String city;
-    String[] skills;
-    int experience, offeredSalary;
+    private final String city;
+    private final String[] skills;
+    private final int experience;
+    private final int offeredSalary;
 
     JobOffer(String city, int offeredSalary, String[] skills, int experience) {
         this.city = city;

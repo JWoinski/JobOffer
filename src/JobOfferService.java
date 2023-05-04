@@ -1,20 +1,12 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class JobOfferService extends JobOffer {
+public class JobOfferService {
 
-    JobOfferService(String city, int offeredSalary, String[] skills, int experience) {
-        super(city, offeredSalary, skills, experience);
-    }
-
-    // ZAPYTAC O STATIC !
     public static JobOffer getBiggestSalary(List<JobOffer> jobOffers) {
-        int biggestSalary = Integer.MIN_VALUE;
         JobOffer biggestSalaryOffer = null;
         for (JobOffer offer : jobOffers) {
-            if (offer.getOfferedSalary() > biggestSalary) {
+            if (biggestSalaryOffer == null || offer.getOfferedSalary() > biggestSalaryOffer.getOfferedSalary()) {
                 biggestSalaryOffer = offer;
             }
         }
@@ -33,15 +25,9 @@ public class JobOfferService extends JobOffer {
         return counter;
     }
 
-    public static List<String> getCitiesSet(List<JobOffer> jobOffers) {
+    public static Set<String> getCitiesSet(List<JobOffer> jobOffers) {
         //    znajduje wszystkie miasta z ofert (różne, czyli maja sie nie powtarzac)
-        List<String> list = new ArrayList<>();
-        for (JobOffer offer : jobOffers) {
-            if (!list.contains(offer.getCity())) {
-                list.add(offer.getCity());
-            }
-        }
-        return list;
+        return jobOffers.stream().map(JobOffer::getCity).collect(Collectors.toSet());
     }
 
     public static double getAverageMinExp(List<JobOffer> jobOffers) {
@@ -54,43 +40,48 @@ public class JobOfferService extends JobOffer {
     }
 
     public static String getMostPopularSkill(List<JobOffer> jobOffers) {
-        List<String> list = new ArrayList<>();
-        for (JobOffer offer : jobOffers) {
-            list.addAll(Arrays.asList(offer.getSkills()));
-        }
-        int frequence = 0;
-        String res = "";
-        for (int i = 0; i < list.size(); i++) {
-            int count = 0;
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(j).equals(list.get(i))) {
-                    count++;
-                }
-            }
-            if (count >= frequence) {
-                res = list.get(i);
-                frequence = count;
+        Map<String, Integer> skillsMap = new HashMap<>();
+        int i =0;
+        for (JobOffer jobOffer : jobOffers) {
+            for (String skill : jobOffer.getSkills()) {
+                skillsMap.put(skill,i);
+                i++;
             }
         }
-        return res;
+        Map.Entry<String, Integer> maxEntry = null;
+        for (Map.Entry<String, Integer> entry : skillsMap.entrySet()) {
+            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+                maxEntry = entry;
+            }
+        }
+        return maxEntry.getKey();
     }
 
+
     public static JobApplication getBestApplication(JobOffer jobOffer, List<JobApplication> jobApplications) {
-        //    (znajdz z listy aplikacji o prace NAJLEPSZA dla danej oferty)
+        //    (znajdz z listy aplikacji o prace NAJLEPSZA dla danej oferty
+
+        //TODO finish getBestApplication
+        // odrzucamy niepasuajce aplikacje !DONE!
+        // szukamy najlepszej, czyli tkaiej ktora:
+        // ma wiecej pasujacych skilli, ma wiecej expa, chce mniej siana, rzut mooneta
+        for(JobApplication jobApplication : jobApplications){
+            if(jobApplication.getRelocationReady()==false && (!jobApplication.getCity().equals(jobOffer.getCity()))){
+                jobApplications.remove(jobApplication);
+            }
+        }
         int score;
         List<Integer> list = new ArrayList<>();
         for (JobApplication application : jobApplications) {
             score = 0;
-            if ((jobOffer.getCity()).equals(application.getCity())) {
-                score++;
-            }
+
             if (jobOffer.getExperience() >= application.getExperience()) {
                 score++;
             }
             if (jobOffer.getOfferedSalary() <= application.getSalary()) {
                 score++;
             }
-            if (Arrays.asList(sortSkills(jobOffer.getSkills())).containsAll(Arrays.asList(sortSkills(application.skills)))) {
+            if (new HashSet<>(Arrays.asList(sortSkills(jobOffer.getSkills()))).containsAll(Arrays.asList(sortSkills(application.getSkills())))) {
                 score++;
             }
             list.add(score);
