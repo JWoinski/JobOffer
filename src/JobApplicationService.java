@@ -38,6 +38,7 @@ public class JobApplicationService {
                 maxEntry = entry;
             }
         }
+        assert maxEntry != null;
         return maxEntry.getKey();
     }
 

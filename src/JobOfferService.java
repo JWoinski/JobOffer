@@ -54,6 +54,7 @@ public class JobOfferService {
                 maxEntry = entry;
             }
         }
+        assert maxEntry != null;
         return maxEntry.getKey();
     }
 
@@ -65,7 +66,7 @@ public class JobOfferService {
         // odrzucamy niepasuajce aplikacje !DONE!
         // szukamy najlepszej, czyli tkaiej ktora:
         // ma wiecej pasujacych skilli, ma wiecej expa, chce mniej siana, rzut mooneta
-        jobApplications.removeIf(jobApplication -> jobApplication.getRelocationReady() == false && (!jobApplication.getCity().equals(jobOffer.getCity())));
+        jobApplications.removeIf(jobApplication -> !jobApplication.getRelocationReady() && (!jobApplication.getCity().equals(jobOffer.getCity())));
         int score;
         List<Integer> list = new ArrayList<>();
         for (JobApplication application : jobApplications) {

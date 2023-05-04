@@ -1,12 +1,14 @@
 import java.util.Arrays;
 
 public class JobApplication {
-    private String name;
-    private String city;
-    private String email;
-    private String[] skills;
-    private int phoneNumber, salary, experience;
-    private boolean relocationReady;
+    private final String name;
+    private final String city;
+    private final String email;
+    private final String[] skills;
+    private final int phoneNumber;
+    private final int salary;
+    private final int experience;
+    private final boolean relocationReady;
 
     JobApplication(String name, String city, String email, String[] skills, int phoneNumber, int salary, int experience, boolean relocationReady) {
         this.name = name;
