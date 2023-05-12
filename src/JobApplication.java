@@ -53,6 +53,9 @@ public class JobApplication {
         return this.relocationReady;
     }
 
+    String uniqueAttributes() {
+        return getEmail() + getName();
+    }
     public String toString() {
         return getClass().getName() + " Name: " + name + " Email: " + email + " City: " + city + " Salary: " + salary + " Skills: " + Arrays.toString(skills) + " Experience: " + experience + "\n";
     }

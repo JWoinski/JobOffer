@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) {
         // Implementation of Job Offers
         List<JobOffer> JobOffers = new ArrayList<>();
@@ -29,17 +28,16 @@ public class Main {
         jobApplications.add(application3);
 
         // Checking Methods
-        System.out.println(JobOfferService.getBiggestSalary(JobOffers));
-        System.out.println(JobOfferService.countInCity(JobOffers, "Warszawa"));
-        System.out.println(JobOfferService.getAverageMinExp(JobOffers));
-        System.out.println(JobOfferService.getMostPopularSkill(JobOffers));
-        System.out.println(JobOfferService.getCitiesSet(JobOffers));
+//        System.out.println(JobOfferService.getBiggestSalary(JobOffers));
+//        System.out.println(JobOfferService.countInCity(JobOffers, "Warszawa"));
+//        System.out.println(JobOfferService.getAverageMinExp(JobOffers));
+//        System.out.println(JobOfferService.getMostPopularSkill(JobOffers));
+//        System.out.println(JobOfferService.getCitiesSet(JobOffers));
         // Checking Methods from Applications
-        System.out.println(JobOfferService.getBestApplication(offer, jobApplications));
-        System.out.println(JobApplicationService.getCitiesCount(jobApplications));
-        System.out.println(JobApplicationService.getEmailsCount(jobApplications));
-        System.out.println(JobApplicationService.getMostFreqSkill(jobApplications));
+//        System.out.println(JobOfferService.getBestApplication(offer, jobApplications));
+//        System.out.println(JobApplicationService.getCitiesCount(jobApplications));
+//        System.out.println(JobApplicationService.getEmailsCount(jobApplications));
+//        System.out.println(JobApplicationService.getMostFreqSkill(jobApplications));
         System.out.println(JobApplicationService.validate(jobApplications));
-
     }
 }
